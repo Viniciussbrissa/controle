@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Veículos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 90%;
+            max-width: 400px;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input, textarea {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        textarea {
+            resize: none;
+            height: 80px;
+        }
+        button {
+            padding: 10px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('form');
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+
+                const registro = {
+                    nome: document.getElementById('nome').value,
+                    veiculo: document.getElementById('veiculo').value,
+                    dataInicial: document.getElementById('data-inicial').value,
+                    horarioInicial: document.getElementById('horario-inicial').value,
+                    destino: document.getElementById('destino').value,
+                    dataFinal: document.getElementById('data-final').value,
+                    horarioFinal: document.getElementById('horario-final').value,
+                    kmRodado: document.getElementById('km-rodado').value,
+                    observacoes: document.getElementById('observacoes').value
+                };
+
+                let registros = JSON.parse(localStorage.getItem('registros')) || [];
+                registros.push(registro);
+                localStorage.setItem('registros', JSON.stringify(registros));
+
+                alert('Registro salvo com sucesso!');
+                form.reset();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Registro de Veículo</h1>
+        <form>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" placeholder="Digite o nome" required>
+
+            <label for="veiculo">Veículo:</label>
+            <input type="text" id="veiculo" name="veiculo" placeholder="Digite o veículo" required>
+
+            <label for="data-inicial">Data Inicial:</label>
+            <input type="date" id="data-inicial" name="data-inicial" required>
+
+            <label for="horario-inicial">Horário Inicial:</label>
+            <input type="time" id="horario-inicial" name="horario-inicial" required>
+
+            <label for="destino">Destino:</label>
+            <input type="text" id="destino" name="destino" placeholder="Digite o destino" required>
+
+            <label for="data-final">Data Final:</label>
+            <input type="date" id="data-final" name="data-final" required>
+
+            <label for="horario-final">Horário Final:</label>
+            <input type="time" id="horario-final" name="horario-final" required>
+
+            <label for="km-rodado">KM Rodado:</label>
+            <input type="number" id="km-rodado" name="km-rodado" placeholder="Ex: 120" required>
+
+            <label for="observacoes">Observações:</label>
+            <textarea id="observacoes" name="observacoes" placeholder="Escreva aqui..."></textarea>
+
+            <button type="submit">Salvar Registro</button>
+        </form>
+    </div>
+</body>
+</html>

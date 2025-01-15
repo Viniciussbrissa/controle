@@ -5,7 +5,7 @@ const express = require('express');
 const app = express();
 
 // Define a porta em que o servidor vai rodar
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000;
 
 // Cria uma rota GET para a página inicial
 app.get('/', (req, res) => {

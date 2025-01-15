@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 10000;
 
 // Cria uma rota GET para a página inicial
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__main, 'index.html'));
 });
 
 // Inicia o servidor
